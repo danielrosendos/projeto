@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+docker-compose up -d
+echo "
+===================== 🚀 Done 🚀 ===================
+      Access your new links:
+      🌎 Web server: http://localhost/
+      ✉️ Local emails: http://localhost:8025
+===================== 🚀 Done 🚀 ==================="

@@ -1,0 +1,102 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: ./image/php
+      dockerfile: Dockerfile
+    user: ${USERID}
+    image: digitalocean.com/php
+    container_name: php_service_laravel
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+      XDEBUG_CONFIG: remote_host=${REMOTEHOST}
+      PHP_IDE_CONFIG: serverName=${SERVERNAME}
+    working_dir: /var/www/
+    volumes:
+       - ${PATH_LOCAL}:/var/www/
+       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: nginx_service_laravel
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/logs:/var/log/nginx
+      - ${PATH_LOCAL}:/var/www/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+    links:
+      - "app"
+
+  redis:
+    image: redis
+    restart: unless-stopped
+    container_name: redis_service_laravel
+    ports:
+      - 6379
+    networks:
+      - app-network
+
+  redis-session:
+    image: redis
+    restart: unless-stopped
+    container_name: redis-session_service_laravel
+    ports:
+      - 6379
+    networks:
+      - app-network
+
+  #MySQL Service
+  db:
+    image: mysql:5.7.22
+    container_name: db_service_laravel
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_USER: ${DB_USER}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+  # Servidor de Email Para testes
+  mailhog:
+    image: mailhog/mailhog
+    restart: unless-stopped
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+volumes:
+  redis-data:
+    driver: "local"
+  elasticsearch-data:
+    driver: "local"
+  dbdata:
+    driver: local

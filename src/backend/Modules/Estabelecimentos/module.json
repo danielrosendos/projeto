@@ -1,0 +1,13 @@
+{
+    "name": "Estabelecimentos",
+    "alias": "estabelecimentos",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Estabelecimentos\\Providers\\EstabelecimentosServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
