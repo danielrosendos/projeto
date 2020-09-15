@@ -21,6 +21,11 @@ da parte visual para o usuário.
 - :small_red_triangle_down: **Postman** - Um facilitador, para fazer documentações
 de APIs, mostrando como deve ser feito o consumo da API.
 
+## Sobre as Escolhas da Linguagens:
+As duas frameworks escolhidas, foram escolhidas pois elas são da zona de conforto
+do programador, onde ele já possuí um pouco mais de experiência com essas plataformas.
+Porém o intuito é as aperfeiçoar em outras plataformas como React e React Native.
+
 ## Instalação
 
 1. Clone o Repositório:
@@ -52,6 +57,15 @@ de APIs, mostrando como deve ser feito o consumo da API.
 
 ## Documentação da Api:
 [https://documenter.getpostman.com/view/4863125/TVK77Luv#7316a34d-5ef0-4cc8-9803-01101fb46332](https://documenter.getpostman.com/view/4863125/TVK77Luv#7316a34d-5ef0-4cc8-9803-01101fb46332)
+
+## Sobre a API:
+A api foi feita em Módulos, exitem dois grandes módulos nesta aplicação que é o módulo
+de autenticação, que fica responsável por toda a parte de autenticação do usuário,
+verificar dados do usuário, cadastrar novos usuários. E o módulo de estabelecimentos,
+responsável por toda a parte do crud de estabelecimentos e da listagem de estabelecimentos
+por localidade. Todos os módulos foram programados tentado seguir padrões de TDD e SOLID, 
+mas não 100% aplicados, pois é algo que ainda venho estudando, e os dois módulos possuem
+teste Unitarios.
 
 ## Prototipo da Aplicação no Figma:
 [https://www.figma.com/file/3CoZ7U4Yc02xoDodsRhvKx/Projeto-Fortbrasil](https://www.figma.com/file/3CoZ7U4Yc02xoDodsRhvKx/Projeto-Fortbrasil)
