@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 docker-compose up -d
+docker-compose exec app composer install -d backend/
+docker-compose exec app cp backend/.env.example backend/.env
+docker-compose exec app php backend/artisan module:migrate Auth
+docker-compose exec app php backend/artisan module:migrate Estabelecimentos
+docker-compose exec app yarn --cwd app/
+docker-compose exec app cp app/.env-exemple app/.env
+docker-compose exec app yarn --cwd app/ build
 echo "
 ===================== 🚀 Done 🚀 ===================
       Access your new links:
-      🌎 Web server: http://localhost/
+      🌎 Api server: http://localhost/
+      🌎 App server: http://localhost:8080/
       ✉️ Local emails: http://localhost:8025
 ===================== 🚀 Done 🚀 ==================="

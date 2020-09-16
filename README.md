@@ -29,7 +29,7 @@ Porém o intuito é as aperfeiçoar em outras plataformas como React e React Nat
 ## Instalação
 
 1. Clone o Repositório:
-> git clone https://github.com/daniloaldm/dockerFileLaravel.git projeto && cd projeto/
+> git clone https://github.com/daniloaldm/dockerFileLaravel.git projeto && cd projeto/ && sudo cp .env.example .env
 
 2. Após clonar, criar o .env do docker:
 > sudo cp .env.example .env
