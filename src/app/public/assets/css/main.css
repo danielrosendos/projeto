@@ -1,0 +1,88 @@
+/* margin-top */
+
+.inputforms {
+    border: 0;
+    border-radius: 30px !important;
+}
+
+.btn-confirm {
+    background-color: #0500FF !important;
+    color: #fff !important;
+    border-radius: 30px !important;
+}
+
+.create-account {
+    margin-top: 20px;
+}
+
+.mt1 {
+    margin-top: 10px;
+}
+
+.mt2 {
+    margin-top: 20px;
+}
+
+.mt3 {
+    margin-top: 20px;
+}
+
+/* margin-bottom */
+
+.mt1 {
+    margin-bottom: 10px;
+}
+
+.mt2 {
+    margin-bottom: 20px;
+}
+
+.mt3 {
+    margin-bottom: 20px;
+}
+
+/* margin-left */
+
+.ml1 {
+    margin-left: 10px;
+}
+
+.ml2 {
+    margin-left: 20px;
+}
+
+.ml3 {
+    margin-left: 20px;
+}
+
+/* margin-right */
+
+.mr1 {
+    margin-right: 10px;
+}
+
+.mr2 {
+    margin-right: 20px;
+}
+r />
+.mr3 {
+    margin-right: 20px;
+}
+
+.iner-shadow {
+    -webkit-box-shadow: inset -21px -43px 63px 0px rgba(0, 0, 0, 0.26);
+    -moz-box-shadow: inset -21px -43px 63px 0px rgba(0, 0, 0, 0.26);
+    box-shadow: inset -21px -43px 63px 0px rgba(0, 0, 0, 0.26);
+}
+
+.clickble {
+    cursor: pointer;
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    height: 30vh;
+    padding: 5px;
+    bottom: 0px;
+}

@@ -1,0 +1,36 @@
+.theme--light.v-application {
+  background: #D3EBC8 !important;
+}
+
+.v-text-field--outlined > .v-input__control > .v-input__slot {
+  background: rgba(196, 196, 196, 0.5) !important;
+}
+
+.v-dialog {
+  box-shadow: none !important
+}
+
+/* width */
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
