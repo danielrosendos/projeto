@@ -175,7 +175,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Estabelecimentos/Entities" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -205,6 +205,8 @@
       <workItem from="1600002062078" duration="22807000" />
       <workItem from="1600086108970" duration="24000" />
       <workItem from="1600110976382" duration="23497000" />
+      <workItem from="1600175648658" duration="22000" />
+      <workItem from="1600222004184" duration="4481000" />
     </task>
     <servers />
   </component>
@@ -234,10 +236,10 @@
     </state>
     <state x="694" y="300" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1600050367114" />
     <state x="925" y="300" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1080@0.0.2560.1080" timestamp="1600136259302" />
-    <state x="1063" y="301" width="432" height="486" key="FileChooserDialogImpl" timestamp="1600086131620">
+    <state x="1063" y="301" width="432" height="486" key="FileChooserDialogImpl" timestamp="1600175668675">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>
-    <state x="1063" y="301" width="432" height="486" key="FileChooserDialogImpl/0.0.2560.1080@0.0.2560.1080" timestamp="1600086131620" />
+    <state x="1063" y="301" width="432" height="486" key="FileChooserDialogImpl/0.0.2560.1080@0.0.2560.1080" timestamp="1600175668675" />
     <state x="803" y="247" key="NewPhpClassDialog" timestamp="1600136136864">
       <screen x="0" y="0" width="2560" height="1080" />
     </state>

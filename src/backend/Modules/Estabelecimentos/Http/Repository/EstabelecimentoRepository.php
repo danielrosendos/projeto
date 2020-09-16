@@ -143,4 +143,16 @@ class EstabelecimentoRepository
 
         return $estabelecimentos;
     }
+
+    /**
+     * Função para recuperar a listagem de todos os estabelecimentos
+     */
+    public function listarTodosOsEstabelecimentos()
+    {
+        $estabelecimentos = Estabelecimento::all();
+
+        if(!$estabelecimentos) throw new \Exception("Não Existe Estabelecimento Cadastrados");
+
+        return $estabelecimentos->toArray();
+    }
 }

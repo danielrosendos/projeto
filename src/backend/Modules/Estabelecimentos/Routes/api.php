@@ -6,5 +6,6 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::put('/atualizarestabelecimento', 'EstabelecimentosController@edit');
     Route::delete('/deletarestabelecimento', 'EstabelecimentosController@delete');
 
+    Route::get('/listartodosestabelecimentos', 'EstabelecimentosController@showAll');
     Route::get('/listsearchestabelecimento', 'EstabelecimentosController@searchPorLocale');
 });

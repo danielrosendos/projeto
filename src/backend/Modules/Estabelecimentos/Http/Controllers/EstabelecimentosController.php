@@ -5,6 +5,7 @@ namespace Modules\Estabelecimentos\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Modules\Estabelecimentos\Http\Repository\EstabelecimentoRepository;
 
@@ -33,7 +34,15 @@ class EstabelecimentosController extends Controller
             if($validator->fails())
                 throw new \Exception($validator->errors()->first());
 
-            $this->estabelecimentoRepository->salvar($request->all(), $request->bearerToken());
+            $requestGoogle = $this->requestInfoGoogle($request->all());
+
+            $token = $request->bearerToken();
+            $request = $request->all();
+
+            $request['latitude'] = $requestGoogle['latitude'];
+            $request['longitude'] = $requestGoogle['longitude'];
+
+            $this->estabelecimentoRepository->salvar($request, $token);
 
             return response()->json([
                 "data" => [],
@@ -74,7 +83,15 @@ class EstabelecimentosController extends Controller
             if($validator->fails())
                 throw new \Exception($validator->errors()->first());
 
-            $this->estabelecimentoRepository->editar($request->all(), $request->bearerToken());
+            $requestGoogle = $this->requestInfoGoogle($request->all());
+
+            $token = $request->bearerToken();
+            $request = $request->all();
+
+            $request['latitude'] = $requestGoogle['latitude'];
+            $request['longitude'] = $requestGoogle['longitude'];
+
+            $this->estabelecimentoRepository->editar($request, $token);
 
             return response()->json([
                 "data" => [],
@@ -110,8 +127,12 @@ class EstabelecimentosController extends Controller
     public function searchPorLocale(Request $request)
     {
         try {
-            $latitude = $request->query('latitude');
-            $longitude = $request->query('longitude');
+            $endereco = $request->query('endereco');
+
+            $requestGoogle = $this->requestInfoGoogleByAddress($endereco);
+
+            $latitude = $requestGoogle['latitude'];
+            $longitude = $requestGoogle['longitude'];
 
             $estabelecimentos = $this->estabelecimentoRepository->listarEstabelecimentosPorLocalidade($latitude, $longitude);
 
@@ -129,6 +150,57 @@ class EstabelecimentosController extends Controller
         }
     }
 
+    public function showAll(Request $request)
+    {
+        try {
+            $estabelecimentos = $this->estabelecimentoRepository->listarTodosOsEstabelecimentos();
+
+            return response()->json([
+                "data" => [
+                    "estabelecimentos" => $estabelecimentos
+                ],
+                "message" => "Estabelecimentos Consultados Com Sucesso"
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                "data" => [],
+                "message" => $e->getMessage()
+            ], 401);
+        }
+    }
+
+    public function requestInfoGoogle(array $request)
+    {
+        $address = "{$request['endereco']}+{$request['bairro']}+{$request['numero']}+{$request['cep']}";
+
+        $address = str_replace(" ", "+", $address);
+
+        $response = Http::get(
+            "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyDJhXmMulxqfesNWcsy3uQ7xA1Z7byBLas"
+        );
+
+        $response = $response->json();
+
+        return [
+            "latitude" => $response['results'][0]['geometry']['location']['lat'],
+            "longitude" => $response['results'][0]['geometry']['location']['lng']
+        ];
+    }
+
+    public function requestInfoGoogleByAddress(string $address)
+    {
+        $response = Http::get(
+            "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyDJhXmMulxqfesNWcsy3uQ7xA1Z7byBLas"
+        );
+
+        $response = $response->json();
+
+        return [
+            "latitude" => $response['results'][0]['geometry']['location']['lat'],
+            "longitude" => $response['results'][0]['geometry']['location']['lng']
+        ];
+    }
+
     /**
      * @return string[]
      */
@@ -140,8 +212,6 @@ class EstabelecimentosController extends Controller
             "bairro" => "required|max:255",
             "numero" => "required|max:255",
             "cep" => "required|max:255|regex:/^[0-9]{5}-[0-9]{3}$/",
-            "latitude" => "required|numeric",
-            "longitude" => "required|numeric",
         ];
     }
 
@@ -161,11 +231,7 @@ class EstabelecimentosController extends Controller
             "numero.max" => "Número Inválido",
             "cep.required" => "CEP Obrigatório",
             "cep.max" => "CEP Inválido",
-            "cep.regex" => "CEP Inválido",
-            "latitude.required" => "Latitude Obrigatório",
-            "latitude.numeric" => "Latitude Inválido",
-            "longitude.required" => "Longitude Obrigatório",
-            "longitude.numeric" => "Longitude Inválido",
+            "cep.regex" => "CEP Inválido"
         ];
     }
 }
