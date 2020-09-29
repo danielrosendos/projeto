@@ -176,7 +176,7 @@ class EstabelecimentosController extends Controller
         $address = str_replace(" ", "+", $address);
 
         $response = Http::get(
-            "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyDJhXmMulxqfesNWcsy3uQ7xA1Z7byBLas"
+            "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key="
         );
 
         $response = $response->json();
@@ -190,7 +190,7 @@ class EstabelecimentosController extends Controller
     public function requestInfoGoogleByAddress(string $address)
     {
         $response = Http::get(
-            "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyDJhXmMulxqfesNWcsy3uQ7xA1Z7byBLas"
+            "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key="
         );
 
         $response = $response->json();
